@@ -32,8 +32,8 @@ public:
     static void UpdateSingleLEDCallback(void* context, int led);
 
 private:
-    static constexpr unsigned short AULA_VID = 0x2E3C;
-    static constexpr unsigned short AULA_PID = 0xC365;
+    static constexpr unsigned short AULA_VID = 0x372E;
+    static constexpr unsigned short AULA_PID = 0x103E;
     static constexpr unsigned short AULA_USAGE_PAGE = 0xFF1B;
     static constexpr unsigned char REPORT_ID = 0x01;
 
