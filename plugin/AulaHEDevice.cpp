@@ -71,31 +71,15 @@ bool AulaHEDevice::Connect()
     struct hid_device_info* devices = hid_enumerate(AULA_VID, AULA_PID);
     struct hid_device_info* matched = nullptr;
     struct hid_device_info* fallback = nullptr;
-    for(struct hid_device_info* info = devices; info; info = info->next)
+        for(struct hid_device_info* info = devices; info; info = info->next)
     {
         if(info->usage_page == AULA_USAGE_PAGE)
         {
-            // Prefer the real WIN 68 product string when several AULA
-            // boards share VID:PID 2E3C:C365.
-            if(info->product_string &&
-               (std::wcsstr(info->product_string, L"WIN 68") != nullptr ||
-                std::wcsstr(info->product_string, L"SI2828HEARGB") != nullptr ||
-                std::wcsstr(info->product_string, L"SI2828KZHEARGB") != nullptr))
-            {
-                matched = info;
-                break;
-            }
-            if(!fallback)
-            {
-                fallback = info;
-            }
+            matched = info;
+            break;
         }
     }
-    // VID:PID is shared with WIN60 and KP-TE153. An unknown product string
-    // cannot safely be treated as a WIN68: it would expose the wrong keymap.
-    if(!matched && fallback && fallback->product_string &&
-       (std::wcsstr(fallback->product_string, L"WIN 68") != nullptr ||
-        std::wcsstr(fallback->product_string, L"SI2828") != nullptr)) matched = fallback;
+
 
     if(!matched)
     {
