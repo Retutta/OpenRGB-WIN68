@@ -35,7 +35,7 @@ private:
     static constexpr unsigned short AULA_VID = 0x372E;
     static constexpr unsigned short AULA_PID = 0x103E;
     static constexpr unsigned short AULA_USAGE_PAGE = 0xFF00;
-    static constexpr unsigned char REPORT_ID = 0x01;
+    static constexpr unsigned char REPORT_ID = 0x00;
 
     bool WriteLighting(unsigned char firmware_mode, unsigned char brightness,
                        unsigned char speed, RGBColor foreground, RGBColor background,
